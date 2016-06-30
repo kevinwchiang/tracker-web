@@ -18,6 +18,7 @@ const task = (state, action) => {
       return {
         id: uuid(),
         name: action.task.name,
+        description: action.task.description,
         state: 'to-do'
       }
     case START_TASK:
@@ -61,6 +62,7 @@ const project = (state, action) => {
       return {
         id: uuid(),
         name: action.name,
+        description: action.description,
         tasks: calculateCounters([])
       }
     case ADD_TASK:
