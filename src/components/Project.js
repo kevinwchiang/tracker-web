@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Component, PropTypes } from 'react';
 import Task from './Task'
-import {Circle} from 'rc-progress'
+import Charts from './Charts'
 
 class Project extends Component {
   render() {
@@ -29,22 +29,6 @@ class Project extends Component {
     }
     let input
     let inputDescription
-    const circleContainerStyle = {
-      "width": "30%",
-      "height": "200px",
-      "marginBottom": "300px",
-      "marginTop": "100px",
-      "marginLeft": "20px",
-      "display": "inline-block"
-    }
-    const counterStyle = {
-      "textAlign": "center",
-      "marginBottom": "10px",
-    }
-    const counterNumStyle = {
-      "color": "#33ff33",
-      "fontSize": "20px",
-    }
     const addTaskBtn = {
       "marginTop": "20px",
       "marginBottom": "50px",
@@ -56,28 +40,7 @@ class Project extends Component {
       <div>
         <h3>{name}</h3>
         <h4>{description}</h4>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.todo}</span> To Do
-            <p>{toDoPercentage}%</p>
-          </div>
-          <Circle percent={toDoPercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.inProgress}</span> In Progress
-            <p>{inProgressPercentage}%</p>
-          </div>
-          <Circle percent={inProgressPercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.complete}</span> Complete
-            <p>{completePercentage}%</p>
-          </div>
-          <Circle percent={completePercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
-
+          <Charts tasks={tasks}/>
         <div>
           <form onSubmit={e => {
             e.preventDefault()
