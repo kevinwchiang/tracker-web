@@ -1,26 +1,11 @@
 import { Component, PropTypes } from 'react';
 import _ from 'lodash'
 import {Circle} from 'rc-progress'
+import Chart from './Chart'
 
 class Charts extends Component {
   render() {
     const { tasks } = this.props
-    const circleContainerStyle = {
-      "width": "30%",
-      "height": "200px",
-      "marginBottom": "300px",
-      "marginTop": "100px",
-      "marginLeft": "20px",
-      "display": "inline-block"
-    }
-    const counterStyle = {
-      "textAlign": "center",
-      "marginBottom": "10px",
-    }
-    const counterNumStyle = {
-      "color": "#33ff33",
-      "fontSize": "20px",
-    }
 
     let totalActiveTasks = tasks.count
     let toDoPercentage = 0
@@ -33,31 +18,13 @@ class Charts extends Component {
     }
     return (
       <div>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.todo}</span> To Do
-            <p>{toDoPercentage}%</p>
-          </div>
-          <Circle percent={toDoPercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.inProgress}</span> In Progress
-            <p>{inProgressPercentage}%</p>
-          </div>
-          <Circle percent={inProgressPercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
-        <div style={circleContainerStyle}>
-          <div style={counterStyle}>
-            <span style={counterNumStyle}>{tasks.complete}</span> Complete
-            <p>{completePercentage}%</p>
-          </div>
-          <Circle percent={completePercentage} strokeWidth="6" strokeColor={'#33ff33'} />
-        </div>
+        <Chart tasks={tasks} type={toDoPercentage}/>
+        <Chart tasks={tasks} type={inProgressPercentage}/>
+        <Chart tasks={tasks} type={completePercentage}/>
       </div>
+      
     );
   }
 }
-
 
 export default Charts;
