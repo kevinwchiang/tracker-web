@@ -48,7 +48,6 @@ const tasks = (state, action) => {
         task(undefined, action)
       ])
     case START_TASK:
-      return calculateCounters(state.list.map(t => task(t, action)))
     case COMPLETE_TASK:
       return calculateCounters(state.list.map(t => task(t, action)))
     default:
@@ -67,12 +66,6 @@ const project = (state, action) => {
       }
     case ADD_TASK:
     case START_TASK:
-      if (state.id !== action.id) {
-        return state
-      }
-      return Object.assign({}, state, {
-        tasks: tasks(state.tasks, action)
-      })
     case COMPLETE_TASK:
       if (state.id !== action.id) {
         return state
@@ -94,7 +87,6 @@ const projects = (state = [], action) => {
       ]
     case ADD_TASK:
     case START_TASK:
-      return state.map(p => project(p, action))
     case COMPLETE_TASK:
       return state.map(p => project(p, action))
     default:
