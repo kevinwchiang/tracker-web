@@ -4,11 +4,13 @@ const initialState = {
   projects: [
     {
       id: uuid(),
-      name: 'Sample Project',
+      name: 'Versus Todo List',
+      description: 'Task list for the Versus Project',
       tasks: {
         count: 0,
         todo: 0,
         inProgress: 0,
+        complete: 0,
         list: []
       }
     },

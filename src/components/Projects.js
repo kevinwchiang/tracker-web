@@ -3,11 +3,12 @@ import Project from './Project'
 
 class Projects extends Component {
   render() {
-    const { addProject, addTask, startTask, projects } = this.props
+    const { addProject, addTask, startTask, completeTask, projects } = this.props
     let projectList = projects.map(project =>
       <Project
         key={project.id}
         addTask={addTask}
+        completeTask={completeTask}
         startTask={startTask}
         {...project}
       />
@@ -44,6 +45,7 @@ Projects.propTypes = {
   addProject: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
   startTask: PropTypes.func.isRequired,
+  completeTask: PropTypes.func.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
